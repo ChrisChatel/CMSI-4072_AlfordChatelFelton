@@ -1,0 +1,34 @@
+
+CMSI 4072 Spring 2026
+Project Proposal Feedback
+Project: Schedulr
+=========================
+Proposal Document [2 points]:
+Your Verbal Description and Justification are complete, well-written, and
+aligned with typical expectations for CMSI 4072.
+   What you already do well
+      Clear explanation of functionality
+      Good articulation of user workflow
+      Strong coverage of technical and educational justification
+      Realistic scoping
+      Well-organized writing
+
+   What can make it even stronger
+      Add an explicit problem framing in the Verbal Description
+      More clearly differentiate your tool from existing schedulers
+      Tie the Justification more tightly to software engineering learning goals
+      Call out specific engineering challenges and AI contributions
+
+Proposal Presentation [Slides and video] [3 points]:
+Your slides:
+   Match the description nicely and completely
+   Nicely laid out, good use of graphics
+   Slide 4 is a bit wordy, but does cover what you want to say
+
+
+Summary:
+--------
+Conclusion: The Verbal Description is complete, well-structured, and easy to understand.
+            The Justification section is also complete, well-reasoned, and appropriate for CMSI 4072.
+
+Nice job overall!  Keep up the good work.  Will update after your video is posted.

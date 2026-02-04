@@ -16,7 +16,8 @@ aligned with typical expectations for CMSI 4072.
    What can make it even stronger
       Add an explicit problem framing in the Verbal Description
       More clearly differentiate your tool from existing schedulers
-      Tie the Justification more tightly to software engineering learning goals
+      Tie the Justification more tightly to software engineering learning
+         goals
       Call out specific engineering challenges and AI contributions
 
 Proposal Presentation [Slides and video] [3 points]:
@@ -28,7 +29,22 @@ Your slides:
 
 Summary:
 --------
-Conclusion: The Verbal Description is complete, well-structured, and easy to understand.
-            The Justification section is also complete, well-reasoned, and appropriate for CMSI 4072.
+Conclusion: The Verbal Description is complete, well-structured, and easy
+               to understand.
+            The Justification section is also complete, well-reasoned, and
+               appropriate for CMSI 4072.
 
-Nice job overall!  Keep up the good work.  Will update after your video is posted.
+Nice job overall!  Keep up the good work.  Will update after your video is
+posted.
+
+VIDEO EVALUATION
+================
+Well done!  I think this will be a very useful application.
+Your presentation was well done, with an even mix of everyone taking part.
+You were clear in presenting your proposed application with reasoning and
+motivation.  One thing to consider for next time, do a volume check on
+everyone's voice to make sure they are all at the same level, and turn up
+the microphones of those that are softer.  Chris was a little softer than
+the others and there were places where it was hard to hear him.
+
+Other than that, excellent work!

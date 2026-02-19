@@ -1,0 +1,130 @@
+
+Documentation Feedback ~ Deliverable #2
+Software Requirements Specification
+Initial Development Schedule
+CMSI 4072 Spring 2026
+=======================================
+
+COMPONENT BREAKDOWN:
+   Strengths:
+      What’s present (evidence):
+         The Introduction notes a web-based system with a back-end component
+            to process availability and a database to store events/responses
+            but no further decomposition or inter-component interfaces are
+            described
+         Why this is incomplete per the course guidance:
+            For completeness, the class emphasizes understandability of what
+               the software must do and who/what is involved, typically
+               supported by structural views (diagrams) so stakeholders can
+               see boundaries and interactions.  A succinct component
+               breakdown (context + components + interfaces) is expected
+               for clarity
+   Suggestions:
+      Add a System Context Diagram identifying external actors (Organizer,
+         Participants, Email/SMS provider, Calendar APIs, Auth provider,
+         Analytics, etc.) and system boundaries
+      Provide a Component Diagram with concise descriptions of:
+         Web UI (event creation, availability UI, results views),
+         Scheduling/Availability Service (aggregation, conflict resolution,
+            tie-breaking),
+         Notification Service (email/SMS invites/confirmations),
+         Persistence Layer (events, slots, responses, audit),
+         Auth/Identity (if applicable),
+         Integration Adapters (e.g., Google/Microsoft calendar sync)
+      For each component, list responsibilities, key inputs/outputs, and
+         interfaces (REST endpoints, events, DB tables).  This aligns with
+            the class expectation of clear, complete descriptions aided by
+            diagrams
+
+FUNCTIONAL REQUIREMENTS:
+   Strengths:
+      Four functional clusters exist with “shall” statements
+         Meeting Creation (create event, specify candidate date/times,
+            unique link)
+         Availability Submission (open link, select times, store
+            availability)
+         Availability Processing (aggregate availability, derive options,
+            present to organizer)..pdf)
+         Event Finalization (close submissions, choose final time, share
+            final time)
+   Suggestions:
+      Add role definitions and permission requirements (Organizer vs.
+         Participant; anonymous vs. authenticated).
+      Specify invitation flows (collect emails/phone numbers, send invites,
+         reminder cadence, opt-out) and finalization notifications.
+      Define time-zone handling explicitly (user-local capture, canonical
+         storage, display rules), tie-breaking algorithms (maximize count,
+         minimize dissent), and quorum rules.
+      Add error handling and validation (expired links, duplicate
+         names/emails, invalid time ranges, server timeouts/retries)
+
+
+PERFORMANCE REQUIREMENTS:
+   Strengths:
+      Why this is incomplete: Completeness around “how well it must work”
+         calls for quantified, testable targets tied to realistic conditions
+         (device/browser/network).  Vague phrases are not sufficient for
+         verification/validation
+   Suggestions:
+      Response time: “Record availability submission and render updated
+         tallies = 500 ms p95 on a mid-range laptop (Chrome stable) over
+         10 Mbps network; server processing = 200 ms p95.”
+      Result computation: “Generate ranked candidate times for
+         N participants × M slots in = 1.0 s p95 for N=100, M=20.”
+      Scalability (capacity): “Support events up to 200 participants and
+         50 candidate slots without degradation beyond 1.5 s p95 for results
+         calculation.”
+      Availability/robustness: “Degrade gracefully on packet loss up to 2%;
+         queue submissions and retry for up to 30 s.”
+      These kinds of metrics make the spec verifiable and align with the
+         “how well” dimension of completeness
+
+ENVIRONMENT REQUIREMENTS:
+   Strengths:
+      Why this is incomplete per the guidance:
+      Completeness typically includes browser/OS versions, runtime stack,
+         network assumptions, storage, and any service dependencies so
+         developers/testers/users know the supported environment with enough
+         specificity
+   Suggestions:
+      Client support: List minimum browser versions (e.g., Chrome/Edge = 100,
+         Firefox = 100, Safari = 15) and mobile/tablet posture (supported/not
+         supported).
+            DB engine/version), deployment model (PaaS/IaaS), and time-zone
+            policy (UTC storage).
+      Network: Minimum bandwidth/latency assumptions for the stated
+         performance targets (e.g., 10 Mbps down/2 Mbps up)
+      Storage & backup: Data size expectations per event, retention/backups,
+         and export formats
+
+OVERALL ASSESSMENT:
+   Category                          Points
+   Component Breakdown               0.5/1
+   Functional Requirements           1.5/4
+   Performance Requirements          0.5/2
+   Environment Requirements          0.5/1
+                                     =====
+   Subtotal                          3.0/8
+   Preliminary Schedule              2.0/2
+   ------------------------------------------------------
+   Total Percentage:   5.0/10 = 50.0% on this deliverable
+
+
+OVERALL ASSESSMENT:
+   Components are briefly mentioned (web app + backend + DB) but there’s no
+      explicit breakdown or diagram describing responsibilities and
+      interfaces.
+   Core flow (create event, collect availability, compute options, finalize)
+      is covered with “shall” statements, but many expected user behaviors,
+      edge cases, and roles are missing
+   Only vague targets (“without noticeable delay,” “reasonable time”) and
+      a generic capacity statement; lacks measurable, testable metrics
+   Lists basic dev items (IDE, GitHub, browser) and generic execution needs
+      (Internet, server), but omits browser/OS versions, storage, security,
+      and network characteristics
+
+
+NOt a bad start... I encourage you to make the indicated additions by the
+end of the semester for full credit on this deliverable.  Let me know if
+you need some suggestions!  I'm here to help you.
+

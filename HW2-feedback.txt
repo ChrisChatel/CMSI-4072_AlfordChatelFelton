@@ -1,0 +1,39 @@
+
+
+HW 2 - Stephens Book Chapters 5 and 6
+CMSI 4072 Spring 2026
+
+Category        Weight     Earned
+===========    ========    ======
+Problem 5.1    [ 5 pts.]      5.0
+Problem 5.2    [ 5 pts.]      5.0
+Problem 5.4    [ 5 pts.]      5.0
+Problem 5.6    [ 5 pts.]      4.0
+Problem 5.8    [10 pts.]      9.0
+Problem 6.1    [10 pts.]     10.0
+Problem 6.2    [10 pts.]      9.0
+
+       Subtotal [50 max]     50.0
+              Your Total     47.0
+
+         Letter grade   A
+
+=================
+SPECIFIC COMMENTS:
+
+Problem 5.1 ~ correct
+
+Problem 5.2 ~ correct
+
+Problem 5.4 ~ correct
+
+Problem 5.6 ~ The response is unclear/grammatical errors and does not discuss structure (e.g., per-document files vs shared DB, schema), nor maintenance (backup, migration, compaction, indexing, retention). It doesn’t tie choices to ClassyDraw usage patterns (objects, layers, thumbnails, undo logs). Needs concrete justification.
+
+Problem 5.8 ~ Your diagram is a bit short; there is no way to NOT enter a sign for the exponent.  Also, it would be good for you to find and use a graphics drawing tool for diagrams; using one makes your diagram easier to see and understand for everyone, and looks much more professional for your presentation of ideas.
+
+Problem 6.1 ~ correct
+
+Problem 6.2 ~ Your diagram shows the architectural relationships, but has no details of the subclasses and what is inherited from the superclasses.  This leave the observer trying to assume why a Rectangle or an Ellipse is a subclass of Shape, and what properties of the classes are passed down or added on.
+
+
+nice work!

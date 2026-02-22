@@ -1,0 +1,58 @@
+
+
+HW 1 - Stephens Book Chapters 1, 2, 4, and 5
+CMSI 4072 Spring 2026
+
+Category        Weight     Earned
+===========    ========    ======
+Problem 1.1    [8 pts.]       7.0
+Problem 1.2    [8 pts.]       7.0
+Problem 2.4    [1 pts.]       1.0
+Problem 2.5    [1 pts.]       1.0
+Problem 4.2    [5 pts.]       5.0
+Problem 4.4    [5 pts.]       4.0
+Problem 4.6    [1 pts.]       0.0
+Problem 4.8    [2 pts.]       2.0
+Problem 5.1    [1 pts.]       1.0
+Problem 5.3    [5 pts.]       5.0
+Problem 5.9    [3 pts.]       3.0
+
+      Subtotal [50 max]      40.0
+             Your Total      36.0
+
+         Letter grade   A-minus
+
+=================
+SPECIFIC COMMENTS:
+
+Problem 1.1 ~ Reasonable but incomplete. Standard software engineering task sets typically also include requirements (or analysis), deployment/release, and maintenance/operations; omitting these under-specifies the lifecycle.
+
+Problem 1.2 ~ Clear and mostly correct. Minor issue: scope is focused on four phases only; should at least include the breakdown of tasks that are given in the book, or minimally the ones you called out in the previous problem.
+
+Problem 2.4 ~ The submitted text gives a general comparison but does not report specific observations from the user’s test (e.g., per-change timestamps, editor names, color highlights, restore flow).  However, no deduction.
+
+Problem 2.5 ~ correct
+
+Problem 4.2 ~ correct
+
+Problem 4.4 ~ You don't have a Gantt chart, only a table.  While somewhat
+   useful, it doesn't allow a view that shows the entire schedule using
+   graphics, and it is less apparent when weekends and holidays occur.  It
+   would be better to use a Gantt chart as the problem specified.
+
+Problem 4.6 ~ No solution provided for this problem.  Zero points.
+
+Problem 4.8 ~ correct
+
+Problem 5.1 ~ correct
+
+Problem 5.3 ~ The per-item categorization is mostly correct and consistent
+   with the prompt’s intent.  The follow-up analysis correctly observes gaps
+   (e.g., no security/installer items)
+
+Problem 5.9 ~ correct
+
+
+nice work!
+
+

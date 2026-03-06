@@ -1,0 +1,86 @@
+
+Documentation Feedback ~ Deliverable #3
+Test Plan Document
+CMSI 4072 Spring 2026 ~
+=======================================
+
+INTRODUCTION
+   Strengths:
+      Explains testing scope in clear and simple terms.
+      Mentions unit, integration, and acceptance testing.
+      Indicates that normal and edge cases will be considered.
+   Suggestions:
+      Add explicit test objectives tied to requirement
+      categories.
+      Include a short description of the test environment,
+      such as tools or platforms.
+      Add a statement of test responsibilities and roles.
+
+UNIT TEST PLAN
+   Strengths:
+      Lists relevant modules to be tested independently.
+      Notes use of black-box and white-box techniques.
+      Shows a clear connection to SRS requirement IDs.
+   Suggestions:
+      Add pass-fail criteria for unit tests.
+      Expand coverage to include error, boundary, and invalid-data cases
+         for every module.
+      Define expected unit-testing tools and frameworks.
+      Add traceability showing which requirements each module supports.
+
+INTEGRATION TEST PLAN
+   Strengths:
+      Identifies key integration paths across modules.
+      Includes end-to-end workflow coverage.
+      Shows awareness of module boundaries.
+   Suggestions:
+      Add rationale explaining why these specific integration paths were
+         chosen.
+      Describe integration strategy, such as bottom-up or top-down.
+      Specify how stubs or mocks will be used, ifneeded.
+      Provide more than one workflow to exercise alternate paths.
+      Add preconditions and required system state.
+      Include error-handling checks when workflow fails.
+
+ACCEPTANCE TEST PLAN
+   Strengths:
+      States that customer requirements will define acceptance.
+      Covers core functional expectations at a high level.
+   Suggestions:
+      Define acceptance criteria using measurable statements.
+      Include usability, performance, and reliability acceptance conditions.
+      Describe the acceptance review process and stakeholders.
+      Include acceptance criteria tied to SRS requirements.
+      Add required starting conditions for tests.
+
+TEST CONFIGURATION CONTROL
+   Strengths:
+      Provides a clear location for test artifacts in the repository.
+      Defines merge gating based on test results.
+   Suggestions:
+      Add versioning rules for test cases and scripts.
+      Specify who approves test updates or changes.
+      Explain branching strategy for test development.
+
+ITEMS NOT TESTED
+   Strengths:
+      Clearly identifies out-of-scope items.
+      Helps manage expectations for project limits.
+   Suggestions:
+      Add justification for each omitted item.
+      Include risks created by excluding these tests.
+      State future plans if items may be tested later.
+
+OVERALL ASSESSMENT:
+   Category                          Points
+---------------------------------   --------
+   Introduction                        1.0   [out of 1.0]
+   Unit test plan                      2.0   [out of 2.0]
+   Integration test plan               1.0   [out of 1.0]
+   Acceptance test plan                4.0   [out of 4.0]
+   Test configuration control          1.0   [out of 1.0]
+   Items not tested                    1.0   [out of 1.0]
+                                     ======
+   Subtotal                           10.0
+   ------------------------------------------------------
+   Total Percentage:  10/10 = 100% which is an A-plus on this deliverable

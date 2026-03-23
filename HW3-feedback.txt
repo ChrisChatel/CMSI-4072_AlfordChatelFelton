@@ -1,0 +1,52 @@
+
+
+HW 3 - Stephens Book Chapters 7 and 8
+CMSI 4072 Spring 2026
+
+Category        Weight     Earned
+===========    ========    ======
+Problem 7.1    [5 pts.]      5.0
+Problem 7.2    [4 pts.]      4.0
+Problem 7.4    [5 pts.]      5.0
+Problem 7.5    [4 pts.]      4.0
+Problem 7.7    [5 pts.]      0.0
+Problem 8.1    [5 pts.]      0.0
+Problem 8.3    [5 pts.]      0.0
+Problem 8.5    [4 pts.]      4.0
+Problem 8.9    [4 pts.]      4.0
+Problem 8.11   [5 pts.]      3.0
+Problem 8.12   [4 pts.]      4.0
+
+       Subtotal [50 max]     50.0
+              Your Total     33.0
+         33.0 out of 50.0 =  66.0%
+
+         Letter grade   D
+
+=================
+SPECIFIC COMMENTS:
+Problem 7.1
+   Correct
+Problem 7.2
+   Correct
+Problem 7.4
+   Correct
+Problem 7.5
+   Correct
+Problem 7.7
+   Missing answer
+Problem 8.1
+   Missing answer
+Problem 8.3
+   Missing answer
+Problem 8.5
+   Correct
+Problem 8.9
+   Correct
+Problem 8.11
+   Close ~ you need to calculate the index for all three pairs and then
+   average them together.  The total number of bugs would then be ~14.
+Problem 8.12
+   Correct
+
+not your best ~ make sure to answer all the problems!

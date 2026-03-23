@@ -1,121 +1,96 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="app">
+      <nav className="navbar">
+        <div className="logo">Schedulr</div>
+        <div className="nav-links">
+          <a href="#features">Features</a>
+          <a href="#preview">Preview</a>
+          <a href="#about">About</a>
         </div>
-        <div>
-          <h1>Get started</h1>
+        <button className="nav-button">Get Started</button>
+      </nav>
+
+      <header className="hero">
+        <p className="eyebrow">Smarter group scheduling</p>
+        <h1>Plan together without the chaos.</h1>
+        <p className="subtitle">
+          Schedulr helps students and groups compare availability, organize
+          plans, and find the best time to meet — all in one place.
+        </p>
+        <div className="hero-buttons">
+          <button>Start Scheduling</button>
+          <button className="secondary">See Features</button>
+        </div>
+      </header>
+
+      <section className="preview-section" id="preview">
+        <div className="preview-text">
+          <p className="section-tag">Live Preview</p>
+          <h2>See everyone’s availability at a glance</h2>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Stop juggling screenshots, texts, and random messages. Schedulr puts
+            everyone’s time blocks in one clean view so your group can quickly
+            decide what works.
           </p>
         </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+        <div className="schedule-card">
+          <div className="schedule-header">
+            <span>Group Availability</span>
+            <span className="status-pill">4 people</span>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+          <div className="schedule-grid">
+            <div className="time">9 AM</div>
+            <div className="slot open">Open</div>
+            <div className="slot open">Open</div>
+
+            <div className="time">11 AM</div>
+            <div className="slot busy">Busy</div>
+            <div className="slot open">Open</div>
+
+            <div className="time">1 PM</div>
+            <div className="slot open">Open</div>
+            <div className="slot busy">Busy</div>
+
+            <div className="time">3 PM</div>
+            <div className="slot open">Open</div>
+            <div className="slot open">Open</div>
+          </div>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <section className="section" id="features">
+        <h2>Features</h2>
+        <div className="card-grid">
+          <article className="card">
+            <h3>Compare Availability</h3>
+            <p>Quickly see overlapping free times across your group.</p>
+          </article>
+
+          <article className="card">
+            <h3>Plan Events Faster</h3>
+            <p>
+              Turn possible times into actual plans without endless
+              back-and-forth.
+            </p>
+          </article>
+
+          <article className="card">
+            <h3>Cleaner Coordination</h3>
+            <p>Keep scheduling organized instead of buried in messages.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer className="footer" id="about">
+        <p>Schedulr — Senior Project concept for simpler student scheduling.</p>
+      </footer>
+    </main>
+  );
 }
 
-export default App
+export default App;

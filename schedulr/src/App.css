@@ -278,3 +278,61 @@
     grid-template-columns: 1fr;
   }
 }
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  width: 320px;
+  text-align: center;
+}
+
+.login-sub {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #11131a;
+  color: white;
+}
+
+.login-card button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+.schedule-row-contents {
+  display: contents;
+}
+
+.slot {
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font: inherit;
+  outline: none;
+}
+
+.slot:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}

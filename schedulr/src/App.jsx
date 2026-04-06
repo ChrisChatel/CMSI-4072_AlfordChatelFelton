@@ -1,6 +1,54 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const [slots, setSlots] = useState([
+    ["Open", "Open"],
+    ["Busy", "Open"],
+    ["Open", "Busy"],
+    ["Open", "Open"],
+  ]);
+
+  const times = ["9 AM", "11 AM", "1 PM", "3 PM"];
+
+  const handleLogin = () => {
+    setUser({ name: "Chris" });
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  const toggleSlot = (rowIndex, colIndex) => {
+    setSlots((prevSlots) =>
+      prevSlots.map((row, r) =>
+        r === rowIndex
+          ? row.map((slot, c) =>
+              c === colIndex ? (slot === "Open" ? "Busy" : "Open") : slot
+            )
+          : row
+      )
+    );
+  };
+
+  if (!user) {
+    return (
+      <div className="app login-page">
+        <div className="login-card">
+          <h1>Schedulr</h1>
+          <p className="login-sub">Sign in to continue</p>
+
+          <input placeholder="Email" />
+          <input placeholder="Password" type="password" />
+
+          <button onClick={handleLogin}>Login</button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className="app">
       <nav className="navbar">
@@ -10,7 +58,9 @@ function App() {
           <a href="#preview">Preview</a>
           <a href="#about">About</a>
         </div>
-        <button className="nav-button">Get Started</button>
+        <button className="nav-button" onClick={handleLogout}>
+          Logout
+        </button>
       </nav>
 
       <header className="hero">
@@ -44,21 +94,22 @@ function App() {
           </div>
 
           <div className="schedule-grid">
-            <div className="time">9 AM</div>
-            <div className="slot open">Open</div>
-            <div className="slot open">Open</div>
+            {times.map((time, rowIndex) => (
+              <div key={time} className="schedule-row-contents">
+                <div className="time">{time}</div>
 
-            <div className="time">11 AM</div>
-            <div className="slot busy">Busy</div>
-            <div className="slot open">Open</div>
-
-            <div className="time">1 PM</div>
-            <div className="slot open">Open</div>
-            <div className="slot busy">Busy</div>
-
-            <div className="time">3 PM</div>
-            <div className="slot open">Open</div>
-            <div className="slot open">Open</div>
+                {slots[rowIndex].map((slot, colIndex) => (
+                  <button
+                    key={`${time}-${colIndex}`}
+                    className={`slot ${slot.toLowerCase()}`}
+                    onClick={() => toggleSlot(rowIndex, colIndex)}
+                    type="button"
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>

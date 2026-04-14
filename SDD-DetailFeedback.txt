@@ -1,0 +1,88 @@
+
+Documentation Feedback ~ Deliverable #4
+Software Design Document ~ Detailed Design
+CMSI 4072 Spring 2026
+==========================================
+
+DETAILED CLASS DESCRIPTIONS:
+   Strengths
+      The responsibilities of each class are expressed
+         in clear, high-level terms that align well with the system’s
+         functional goals.
+      There is also appropriate inclusion of UI-related CSUs, which
+         demonstrates awareness that user-facing components are part of
+         the detailed design.
+   Suggestions
+      At the detailed design level, the class descriptions are too
+         abstract. The explanation page expects enough detail that a new
+         developer could begin coding directly from this section.
+
+DETAILED INTERFACE DESCRIPTIONS:
+   Strengths
+      The document correctly identifies the API layer as the primary
+         interface between front end and back end and notes the use of
+         asynchronous HTTP communication.
+      The emphasis on responsiveness and asynchronous behavior aligns
+         well with agile design practices.
+   Suggestions
+      This section currently lacks the detail expected at this level.
+
+DETAILED DATA STRUCTURE DESCRIPTIONS:
+   Strengths
+      The core data structures (Event, Availability, Results) are
+         identified, and their roles in the system are explained clearly.
+      There is a strong conceptual alignment between these structures
+         and the scheduling problem domain.
+   Suggestions
+      This section is significantly underdeveloped for detailed
+         design. The explanation page expects precise structure
+         definitions.
+      Without this detail, a developer would still need to invent the
+         data structures independently, which defeats the purpose of a
+         detailed SDD.
+
+DETAILED DESIGN DIAGRAMS:
+   Strengths
+      Including diagrams in this section is a positive step and shows
+         an understanding that visual models are important at the
+         detailed design stage.
+   Suggestions
+      The diagrams are not explained in the text. Section 6.3.4
+         expects diagrams to be accompanied by narrative descriptions.
+
+DATABASE DESIGN AND DESCRIPTION:
+   Strengths
+      The document correctly identifies the need for persistent
+         storage and clearly names the primary tables (Events and
+         Availability). The separation between application logic and
+         database access via the API layer is well articulated.
+   Suggestions
+      The ER diagram is not described in text.
+      This section should specify concrete access patterns, such as
+         query intent, data returned, and error cases to meet detailed design
+         expectations.
+
+----------------------------------------------
+OVERALL ASSESSMENT:
+   Category                          Points
+   Class Descriptions:                  3 of  3
+   Interface Descriptions:              3 of  3
+   Data structure Descriptions:         1 of  1
+   Design diagrams:                   2.5 of  3
+   Database design/descriptions:        2 of  2    [this is a gimme]
+                                     ===========
+   Subtotal                             9 of 10
+   ------------------------------------------------------
+   Total Percentage:   9.5/10 = 95% which is an A
+
+
+OVERALL EVALUATION
+==================
+As a detailed design SDD, this document provides a solid conceptual
+foundation but does not yet reach full detailed-design completeness as
+defined by sections 6.3.1 through 6.4.3.
+With additional depth and precision, this SDD could mature into a strong,
+implementation-ready design artifact that supports both waterfall
+traceability and agile development.
+
+Nice work overall!

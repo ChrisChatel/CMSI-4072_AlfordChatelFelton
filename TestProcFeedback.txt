@@ -1,0 +1,65 @@
+
+Documentation Feedback ~ Deliverable #3
+Test Procedure Document
+CMSI 4072 Spring 2026 ~
+=======================================
+
+A. Test steps are clearly documented and precise
+   Strengths
+      The document consistently presents test procedures as numbered,
+      step-by-step instructions across unit, integration, and
+      acceptance testing sections.
+   Suggestions
+      While steps are clear, they are often high-level rather than
+      precise. Detailed test procedures should specify concrete inputs,
+      exact user actions, and explicit pass/fail criteria.
+
+B. Clear mapping between requirements and test cases
+   [or between user stories and test cases]
+   Strengths
+      The Test Verification Matrix provides a clear and organized
+      mapping between SRS requirement numbers and corresponding test
+      cases.
+   Suggestions
+      Nothing to add here
+
+C. All assumptions and dependencies are explicitly captured
+   Strengths
+      The document implicitly identifies major dependencies.
+      The “Items Not Tested” section also
+         acknowledges scope limitations
+   Suggestions
+      Assumptions and dependencies are not explicitly listed in a
+         dedicated section.
+
+D. Test steps checklist exists
+   Strengths
+      The consistent numbered steps lend themselves well to
+         checklist-style execution.
+   Suggestions
+      There is no formal checklist artifact, such as a table with
+         checkboxes, execution dates, tester initials, and pass/fail
+         status.
+
+E. Test steps checklist completed [for second iteration]
+   Strengths
+      The document appears well positioned to support a second
+         iteration of testing, given its organized structure and defined
+         test cases.
+   Suggestions
+      For a second iteration, the document should include
+         completed checklists, execution status (Pass/Fail), defect notes,
+         and dates.
+
+OVERALL ASSESSMENT:
+   Category                          Points
+   A. documented                        2.0
+   B. mapping                           2.0
+   C. assumptions/dependencies          1.5
+   D. checklist                         3.0
+                                     ======
+   Subtotal                             8.5
+   ------------------------------------------------------
+   Total Percentage:  8.5/10 = 100% which is a B on this deliverable
+
+Not bad!

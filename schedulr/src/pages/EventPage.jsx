@@ -19,8 +19,7 @@ function buildRecommendations(days, times, participants) {
       const slotKey = `${day.iso}-${time}`;
 
       const availableParticipants = participants.filter(
-        (p) =>
-          Array.isArray(p.availability) && p.availability.includes(slotKey)
+        (p) => Array.isArray(p.availability) && p.availability.includes(slotKey)
       );
 
       const count = availableParticipants.length;
@@ -47,11 +46,17 @@ function buildRecommendations(days, times, participants) {
   });
 
   // Sort: most attendees first; break ties by earlier time
-  return ranked.sort((a, b) => b.count - a.count || a.slot.localeCompare(b.slot));
+  return ranked.sort(
+    (a, b) => b.count - a.count || a.slot.localeCompare(b.slot)
+  );
 }
 
 function TierBadge({ tier }) {
-  const labels = { all: "All available", most: "Most available", some: "Some available" };
+  const labels = {
+    all: "All available",
+    most: "Most available",
+    some: "Some available",
+  };
   return <span className={`tier-badge tier-${tier}`}>{labels[tier]}</span>;
 }
 
@@ -78,7 +83,10 @@ function EventPage() {
   const [tierFilter, setTierFilter] = useState("all"); // "all" | "most" | "some"
 
   const calendarColumnStyle = {
-    gridTemplateColumns: `110px repeat(${Math.max(days.length, 1)}, minmax(120px, 1fr))`,
+    gridTemplateColumns: `110px repeat(${Math.max(
+      days.length,
+      1
+    )}, minmax(120px, 1fr))`,
   };
 
   // ---------------------------------------------------------------------------
@@ -128,7 +136,11 @@ function EventPage() {
   // ---------------------------------------------------------------------------
   // 5.2.3.2 — Compute recommendations from live participant data
   // ---------------------------------------------------------------------------
-  const allRecommendations = buildRecommendations(days, times, savedParticipants);
+  const allRecommendations = buildRecommendations(
+    days,
+    times,
+    savedParticipants
+  );
 
   const filteredRecommendations = allRecommendations.filter((r) => {
     if (tierFilter === "all") return r.tier === "all";
@@ -170,7 +182,9 @@ function EventPage() {
   const toggleSlot = (dayIso, time) => {
     const slotKey = `${dayIso}-${time}`;
     setSelectedSlots((prev) =>
-      prev.includes(slotKey) ? prev.filter((s) => s !== slotKey) : [...prev, slotKey]
+      prev.includes(slotKey)
+        ? prev.filter((s) => s !== slotKey)
+        : [...prev, slotKey]
     );
   };
 
@@ -269,7 +283,9 @@ function EventPage() {
                   <button
                     key={t}
                     type="button"
-                    className={`tier-filter-btn ${tierFilter === t ? "active" : ""}`}
+                    className={`tier-filter-btn ${
+                      tierFilter === t ? "active" : ""
+                    }`}
                     onClick={() => setTierFilter(t)}
                   >
                     {t === "all" && "Everyone"}
@@ -285,7 +301,9 @@ function EventPage() {
                 {topRecommendations.map((rec, index) => (
                   <div
                     key={rec.slot}
-                    className={`recommendation-card ${index === 0 ? "best" : ""}`}
+                    className={`recommendation-card ${
+                      index === 0 ? "best" : ""
+                    }`}
                   >
                     <div className="recommendation-rank">#{index + 1}</div>
                     <div className="recommendation-content">
@@ -294,9 +312,12 @@ function EventPage() {
                       </h3>
                       <p>
                         <strong>{rec.count}</strong> of {rec.total} participant
-                        {rec.total !== 1 ? "s" : ""} available ({rec.percentage}%)
+                        {rec.total !== 1 ? "s" : ""} available ({rec.percentage}
+                        %)
                       </p>
-                      <p className="rec-names">{rec.availableNames.join(", ")}</p>
+                      <p className="rec-names">
+                        {rec.availableNames.join(", ")}
+                      </p>
                       <TierBadge tier={rec.tier} />
                     </div>
 
@@ -328,12 +349,11 @@ function EventPage() {
                   <strong>
                     {bestSlot.dayLabel} at {bestSlot.time}
                   </strong>{" "}
-                  has the highest attendance —{" "}
-                  <strong>{bestSlot.count}</strong> of {bestSlot.total}{" "}
-                  participant{bestSlot.total !== 1 ? "s" : ""} (
-                  {bestSlot.percentage}%) are available.
-                  {bestSlot.tier === "all" &&
-                    " This works for everyone."}
+                  has the highest attendance — <strong>{bestSlot.count}</strong>{" "}
+                  of {bestSlot.total} participant
+                  {bestSlot.total !== 1 ? "s" : ""} ({bestSlot.percentage}%) are
+                  available.
+                  {bestSlot.tier === "all" && " This works for everyone."}
                   {bestSlot.tier === "most" &&
                     " This works for more than half your group."}
                   {bestSlot.tier === "some" &&
@@ -349,7 +369,9 @@ function EventPage() {
           <div className="form-group">
             <p className="form-label">Group Availability Hint</p>
             <p className="helper-text">
-              Number of participants available in each slot across all {savedParticipants.length} submission{savedParticipants.length !== 1 ? "s" : ""}.
+              Number of participants available in each slot across all{" "}
+              {savedParticipants.length} submission
+              {savedParticipants.length !== 1 ? "s" : ""}.
             </p>
 
             <div className="hint-calendar" style={calendarColumnStyle}>
@@ -413,10 +435,12 @@ function EventPage() {
                     <button
                       key={slotKey}
                       type="button"
-                      className={`calendar-cell ${isSelected ? "selected" : ""}`}
+                      className={`calendar-cell ${
+                        isSelected ? "selected" : ""
+                      }`}
                       onClick={() => toggleSlot(day.iso, time)}
                     >
-                      {isSelected ? "✓" : ""}
+                      {isSelected ? "Open" : "Busy"}
                     </button>
                   );
                 })}
@@ -442,7 +466,10 @@ function EventPage() {
         <aside className="participants-card">
           <p className="section-tag">Current Responses</p>
           <h2>Submitted Participants</h2>
-          <p className="helper-text">{savedParticipants.length} response{savedParticipants.length !== 1 ? "s" : ""} so far.</p>
+          <p className="helper-text">
+            {savedParticipants.length} response
+            {savedParticipants.length !== 1 ? "s" : ""} so far.
+          </p>
 
           {savedParticipants.length > 0 ? (
             <div className="submitted-participants">
@@ -450,7 +477,10 @@ function EventPage() {
                 <div key={index} className="participant-calendar-card">
                   <h3 className="participant-name">{participant.name}</h3>
 
-                  <div className="submitted-calendar" style={calendarColumnStyle}>
+                  <div
+                    className="submitted-calendar"
+                    style={calendarColumnStyle}
+                  >
                     <div className="calendar-header empty-cell"></div>
                     {days.map((day) => (
                       <div

@@ -273,8 +273,8 @@
 
 .event-layout {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -282,8 +282,8 @@
 .participants-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
+  border-radius: 18px;
+  padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
@@ -473,9 +473,9 @@
 
 .availability-calendar {
   display: grid;
-  grid-template-columns: 120px repeat(5, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+  grid-template-columns: 72px repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 18px;
   align-items: center;
 }
 
@@ -483,7 +483,8 @@
   text-align: center;
   font-weight: 700;
   color: white;
-  padding: 10px 0;
+  padding: 6px 0;
+  font-size: 13px;
 }
 
 .empty-cell {
@@ -497,30 +498,33 @@
 .calendar-time-label {
   color: var(--muted);
   font-weight: 600;
-  padding: 14px 10px;
+  padding: 4px 6px;
+  font-size: 11px;
+  white-space: nowrap;
 }
 
 .calendar-cell {
-  min-height: 56px;
+  min-height: 30px;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  background: #11131a;
-  color: var(--text);
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 16px;
+  transition: all 0.15s ease;
+  font-size: 10px;
+  padding: 0;
+  font-weight: 700;
 }
 
 .calendar-cell:hover {
   border-color: var(--primary);
-  transform: translateY(-1px);
+  transform: scale(1.03);
 }
 
 .calendar-cell.selected {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: var(--primary);
-  color: white;
-  font-weight: 700;
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.45);
+  color: #86efac;
 }
 .submitted-participants {
   display: flex;
@@ -544,22 +548,22 @@
 
 .submitted-calendar {
   display: grid;
-  grid-template-columns: 90px repeat(5, 1fr);
-  gap: 8px;
+  grid-template-columns: 72px repeat(5, 1fr);
+  gap: 6px;
   align-items: center;
 }
 
 .submitted-calendar-cell {
-  min-height: 48px;
-  border-radius: 12px;
+  min-height: 28px;
+  border-radius: 8px;
   border: 1px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 600;
   text-align: center;
-  padding: 6px;
+  padding: 2px;
 }
 
 .submitted-calendar-cell.available {
@@ -577,22 +581,22 @@
 
 .hint-calendar {
   display: grid;
-  grid-template-columns: 120px repeat(5, 1fr);
-  gap: 10px;
-  margin-top: 16px;
-  margin-bottom: 24px;
+  grid-template-columns: 72px repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 14px;
+  margin-bottom: 18px;
   align-items: center;
 }
 
 .hint-cell {
-  min-height: 56px;
-  border-radius: 14px;
+  min-height: 30px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 11px;
 }
 
 .hint-cell.hint-none {
@@ -680,13 +684,16 @@
   .calendar-cell,
   .hint-cell,
   .submitted-calendar-cell {
-    min-height: 56px;
-    border-radius: 14px;
-    text-align: center;
+    min-height: 28px;
+    border-radius: 8px;
+    border: 1px solid transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    padding: 2px;
   }
   .calendar-time-label {
     writing-mode: vertical-rl;

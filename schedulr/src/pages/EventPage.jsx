@@ -384,7 +384,7 @@ function EventPage() {
             />
 
             <p className="helper-text">
-              Click the time slots below to change them from Busy to Available.
+              Click the time slots below to change them from Busy to Open.
             </p>
           </div>
 

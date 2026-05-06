@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import "../App.css";
 
 function CreateEvent() {
-  const navigate = useNavigate();
-
   const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [dayCount, setDayCount] = useState(1);
@@ -81,9 +78,7 @@ function CreateEvent() {
     setCopiedMessage("");
   };
 
-  const eventLink = eventId
-    ? `${window.location.origin}/event/${eventId}`
-    : "";
+  const eventLink = eventId ? `${window.location.origin}/event/${eventId}` : "";
 
   const handleCopyLink = async () => {
     if (!eventLink) return;
@@ -96,8 +91,8 @@ function CreateEvent() {
   };
 
   const handleOpenEvent = () => {
-    if (!eventId) return;
-    navigate(`/event/${eventId}`);
+    if (!eventLink) return;
+    window.open(eventLink, "_blank");
   };
 
   return (
@@ -165,7 +160,9 @@ function CreateEvent() {
             {isLoading ? "Creating..." : "Generate Event Link"}
           </button>
 
-          {errorMessage && <p className="status-message error">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="status-message error">{errorMessage}</p>
+          )}
 
           {eventId && (
             <div className="generated-link-box">

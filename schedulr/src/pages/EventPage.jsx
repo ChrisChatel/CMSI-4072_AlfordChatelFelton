@@ -3,13 +3,6 @@ import { useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import "../App.css";
 
-// ---------------------------------------------------------------------------
-// 5.2.3.2 — Recommendation engine
-// Scores every time slot by:
-//   - `count`       : number of participants available (higher = better)
-//   - `percentage`  : count / totalParticipants (shown in UI)
-//   - `tier`        : "all" | "most" | "some" — lets organizer filter
-// ---------------------------------------------------------------------------
 function buildRecommendations(days, times, participants) {
   const total = participants.length;
   const ranked = [];
@@ -23,7 +16,7 @@ function buildRecommendations(days, times, participants) {
       );
 
       const count = availableParticipants.length;
-      if (count === 0) return; // skip empty slots entirely
+      if (count === 0) return;
 
       const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
 
@@ -45,7 +38,6 @@ function buildRecommendations(days, times, participants) {
     });
   });
 
-  // Sort: most attendees first; break ties by earlier time
   return ranked.sort(
     (a, b) => b.count - a.count || a.slot.localeCompare(b.slot)
   );
@@ -78,24 +70,18 @@ function EventPage() {
   const [dayCount, setDayCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // 5.2.3.3 — filter state for organizer view
-  const [tierFilter, setTierFilter] = useState("all"); // "all" | "most" | "some"
+  const [tierFilter, setTierFilter] = useState("all");
 
   const calendarColumnStyle = {
-    gridTemplateColumns: `110px repeat(${Math.max(
+    gridTemplateColumns: `72px repeat(${Math.max(
       days.length,
       1
-    )}, minmax(120px, 1fr))`,
+    )}, minmax(92px, 1fr))`,
   };
 
-  // ---------------------------------------------------------------------------
-  // 5.2.3.1 — Load event + all participant data from Supabase
-  // ---------------------------------------------------------------------------
   const loadEventData = useCallback(async () => {
     setIsLoading(true);
 
-    // Load event metadata
     const { data: eventData, error: eventError } = await supabase
       .from("events")
       .select("name, day_count, selected_dates")
@@ -112,7 +98,6 @@ function EventPage() {
       );
     }
 
-    // Load all participant submissions for this event
     const { data: participantData, error: participantError } = await supabase
       .from("participants")
       .select("name, availability")
@@ -133,9 +118,6 @@ function EventPage() {
     loadEventData();
   }, [loadEventData]);
 
-  // ---------------------------------------------------------------------------
-  // 5.2.3.2 — Compute recommendations from live participant data
-  // ---------------------------------------------------------------------------
   const allRecommendations = buildRecommendations(
     days,
     times,
@@ -145,15 +127,12 @@ function EventPage() {
   const filteredRecommendations = allRecommendations.filter((r) => {
     if (tierFilter === "all") return r.tier === "all";
     if (tierFilter === "most") return r.tier === "all" || r.tier === "most";
-    return true; // "some" shows everything
+    return true;
   });
 
   const topRecommendations = filteredRecommendations.slice(0, 5);
-  const bestSlot = allRecommendations[0]; // always the absolute best
+  const bestSlot = allRecommendations[0];
 
-  // ---------------------------------------------------------------------------
-  // Availability hint helpers (unchanged logic, same visual)
-  // ---------------------------------------------------------------------------
   const getAvailabilityCount = (slotKey) =>
     savedParticipants.reduce((count, p) => {
       return Array.isArray(p.availability) && p.availability.includes(slotKey)
@@ -188,9 +167,6 @@ function EventPage() {
     );
   };
 
-  // ---------------------------------------------------------------------------
-  // Submit participant — writes to Supabase, then reloads
-  // ---------------------------------------------------------------------------
   const handleSubmit = async () => {
     const trimmedName = participantName.trim();
 
@@ -222,8 +198,6 @@ function EventPage() {
     setParticipantName("");
     setSelectedSlots([]);
     setMessage("Availability submitted successfully.");
-
-    // 5.2.3.1 — Reload all participant data so recommendations update immediately
     await loadEventData();
   };
 
@@ -266,9 +240,6 @@ function EventPage() {
             <strong>Number of Days:</strong> {dayCount || days.length}
           </p>
 
-          {/* ----------------------------------------------------------------
-              5.2.3.3 — Meeting time recommendations for the organizer
-          ---------------------------------------------------------------- */}
           <div className="form-group">
             <p className="form-label">Recommended Meeting Times</p>
             <p className="helper-text">
@@ -276,7 +247,6 @@ function EventPage() {
               find times where everyone — or most people — are free.
             </p>
 
-            {/* Tier filter */}
             {savedParticipants.length > 0 && (
               <div className="tier-filter">
                 {["all", "most", "some"].map((t) => (
@@ -321,7 +291,6 @@ function EventPage() {
                       <TierBadge tier={rec.tier} />
                     </div>
 
-                    {/* Percentage bar */}
                     <div className="rec-bar-track">
                       <div
                         className={`rec-bar-fill tier-fill-${rec.tier}`}
@@ -363,9 +332,6 @@ function EventPage() {
             )}
           </div>
 
-          {/* ----------------------------------------------------------------
-              5.2.3.1 — Group availability hint grid
-          ---------------------------------------------------------------- */}
           <div className="form-group">
             <p className="form-label">Group Availability Hint</p>
             <p className="helper-text">
@@ -374,35 +340,36 @@ function EventPage() {
               {savedParticipants.length !== 1 ? "s" : ""}.
             </p>
 
-            <div className="hint-calendar" style={calendarColumnStyle}>
-              <div className="calendar-header empty-cell"></div>
-              {days.map((day) => (
-                <div key={`hint-${day.iso}`} className="calendar-header">
-                  {renderDayHeader(day)}
-                </div>
-              ))}
+            <div className="calendar-scroll">
+              <div className="hint-calendar" style={calendarColumnStyle}>
+                <div className="calendar-header empty-cell"></div>
+                {days.map((day) => (
+                  <div key={`hint-${day.iso}`} className="calendar-header">
+                    {renderDayHeader(day)}
+                  </div>
+                ))}
 
-              {times.map((time) => (
-                <div className="calendar-row" key={`hint-row-${time}`}>
-                  <div className="calendar-time-label">{time}</div>
-                  {days.map((day) => {
-                    const slotKey = `${day.iso}-${time}`;
-                    const count = getAvailabilityCount(slotKey);
-                    return (
-                      <div
-                        key={`hint-${slotKey}`}
-                        className={`hint-cell ${getHintClassName(count)}`}
-                      >
-                        {count}
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
+                {times.map((time) => (
+                  <div className="calendar-row" key={`hint-row-${time}`}>
+                    <div className="calendar-time-label">{time}</div>
+                    {days.map((day) => {
+                      const slotKey = `${day.iso}-${time}`;
+                      const count = getAvailabilityCount(slotKey);
+                      return (
+                        <div
+                          key={`hint-${slotKey}`}
+                          className={`hint-cell ${getHintClassName(count)}`}
+                        >
+                          {count}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Participant availability selector */}
           <div className="form-group">
             <label htmlFor="participant-name" className="form-label">
               Your Name
@@ -415,37 +382,43 @@ function EventPage() {
               placeholder="Enter your name"
               className="form-input"
             />
+
+            <p className="helper-text">
+              Click the time slots below to change them from Busy to Available.
+            </p>
           </div>
 
-          <div className="availability-calendar" style={calendarColumnStyle}>
-            <div className="calendar-header empty-cell"></div>
-            {days.map((day) => (
-              <div key={day.iso} className="calendar-header">
-                {renderDayHeader(day)}
-              </div>
-            ))}
+          <div className="calendar-scroll">
+            <div className="availability-calendar" style={calendarColumnStyle}>
+              <div className="calendar-header empty-cell"></div>
+              {days.map((day) => (
+                <div key={day.iso} className="calendar-header">
+                  {renderDayHeader(day)}
+                </div>
+              ))}
 
-            {times.map((time) => (
-              <div className="calendar-row" key={time}>
-                <div className="calendar-time-label">{time}</div>
-                {days.map((day) => {
-                  const slotKey = `${day.iso}-${time}`;
-                  const isSelected = selectedSlots.includes(slotKey);
-                  return (
-                    <button
-                      key={slotKey}
-                      type="button"
-                      className={`calendar-cell ${
-                        isSelected ? "selected" : ""
-                      }`}
-                      onClick={() => toggleSlot(day.iso, time)}
-                    >
-                      {isSelected ? "Open" : "Busy"}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
+              {times.map((time) => (
+                <div className="calendar-row" key={time}>
+                  <div className="calendar-time-label">{time}</div>
+                  {days.map((day) => {
+                    const slotKey = `${day.iso}-${time}`;
+                    const isSelected = selectedSlots.includes(slotKey);
+                    return (
+                      <button
+                        key={slotKey}
+                        type="button"
+                        className={`calendar-cell ${
+                          isSelected ? "selected" : ""
+                        }`}
+                        onClick={() => toggleSlot(day.iso, time)}
+                      >
+                        {isSelected ? "Open" : "Busy"}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
 
           <button
@@ -460,9 +433,6 @@ function EventPage() {
           {message && <p className="status-message">{message}</p>}
         </section>
 
-        {/* ------------------------------------------------------------------
-            Sidebar — submitted participants list
-        ------------------------------------------------------------------ */}
         <aside className="participants-card">
           <p className="section-tag">Current Responses</p>
           <h2>Submitted Participants</h2>
@@ -477,44 +447,46 @@ function EventPage() {
                 <div key={index} className="participant-calendar-card">
                   <h3 className="participant-name">{participant.name}</h3>
 
-                  <div
-                    className="submitted-calendar"
-                    style={calendarColumnStyle}
-                  >
-                    <div className="calendar-header empty-cell"></div>
-                    {days.map((day) => (
-                      <div
-                        key={`${participant.name}-${day.iso}`}
-                        className="calendar-header"
-                      >
-                        {renderDayHeader(day)}
-                      </div>
-                    ))}
+                  <div className="calendar-scroll">
+                    <div
+                      className="submitted-calendar"
+                      style={calendarColumnStyle}
+                    >
+                      <div className="calendar-header empty-cell"></div>
+                      {days.map((day) => (
+                        <div
+                          key={`${participant.name}-${day.iso}`}
+                          className="calendar-header"
+                        >
+                          {renderDayHeader(day)}
+                        </div>
+                      ))}
 
-                    {times.map((time) => (
-                      <div
-                        className="calendar-row"
-                        key={`${participant.name}-${time}`}
-                      >
-                        <div className="calendar-time-label">{time}</div>
-                        {days.map((day) => {
-                          const slotKey = `${day.iso}-${time}`;
-                          const isAvailable =
-                            Array.isArray(participant.availability) &&
-                            participant.availability.includes(slotKey);
-                          return (
-                            <div
-                              key={`${participant.name}-${slotKey}`}
-                              className={`submitted-calendar-cell ${
-                                isAvailable ? "available" : "unavailable"
-                              }`}
-                            >
-                              {isAvailable ? "Available" : "Unavailable"}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ))}
+                      {times.map((time) => (
+                        <div
+                          className="calendar-row"
+                          key={`${participant.name}-${time}`}
+                        >
+                          <div className="calendar-time-label">{time}</div>
+                          {days.map((day) => {
+                            const slotKey = `${day.iso}-${time}`;
+                            const isAvailable =
+                              Array.isArray(participant.availability) &&
+                              participant.availability.includes(slotKey);
+                            return (
+                              <div
+                                key={`${participant.name}-${slotKey}`}
+                                className={`submitted-calendar-cell ${
+                                  isAvailable ? "available" : "unavailable"
+                                }`}
+                              >
+                                {isAvailable ? "Available" : "Unavailable"}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}

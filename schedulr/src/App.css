@@ -280,6 +280,7 @@
 
 .event-card,
 .participants-card {
+  min-width: 0;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -293,9 +294,12 @@
 }
 
 .event-subtitle,
-.event-meta,
-.helper-text {
+.event-meta {
   color: var(--muted);
+}
+
+.helper-text {
+  color: #d6d6f5;
 }
 
 .event-meta {
@@ -303,6 +307,7 @@
 }
 
 .form-group {
+  min-width: 0;
   margin-bottom: 20px;
 }
 
@@ -473,7 +478,7 @@
 
 .availability-calendar {
   display: grid;
-  grid-template-columns: 72px repeat(5, 1fr);
+  grid-template-columns: 72px repeat(var(--day-count, 5), minmax(120px, 1fr));
   gap: 6px;
   margin-top: 18px;
   align-items: center;
@@ -518,7 +523,7 @@
 
 .calendar-cell:hover {
   border-color: var(--primary);
-  transform: scale(1.03);
+  transform: translateY(-1px);
 }
 
 .calendar-cell.selected {
@@ -534,6 +539,7 @@
 }
 
 .participant-calendar-card {
+  min-width: 0;
   background: #11131a;
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -548,7 +554,7 @@
 
 .submitted-calendar {
   display: grid;
-  grid-template-columns: 72px repeat(5, 1fr);
+  grid-template-columns: 72px repeat(var(--day-count, 5), minmax(120px, 1fr));
   gap: 6px;
   align-items: center;
 }
@@ -581,7 +587,7 @@
 
 .hint-calendar {
   display: grid;
-  grid-template-columns: 72px repeat(5, 1fr);
+  grid-template-columns: 72px repeat(var(--day-count, 5), minmax(120px, 1fr));
   gap: 6px;
   margin-top: 14px;
   margin-bottom: 18px;
@@ -618,6 +624,19 @@
   background: rgba(34, 197, 94, 0.3);
   color: #4ade80;
   border-color: rgba(34, 197, 94, 0.5);
+}
+
+.calendar-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+}
+
+.event-card,
+.participant-calendar-card {
+  min-width: 0;
 }
 
 /* MOBILE */
@@ -659,6 +678,7 @@
     gap: 10px;
     margin-top: 20px;
     align-items: center;
+    overflow-x: auto;
   }
 
   .calendar-header {

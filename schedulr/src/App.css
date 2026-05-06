@@ -168,6 +168,12 @@
 }
 
 .schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.schedule-row {
   display: grid;
   grid-template-columns: 80px 1fr 1fr;
   gap: 10px;
@@ -187,6 +193,14 @@
 
 .slot {
   border: 1px solid var(--border);
+  cursor: pointer;
+  font: inherit;
+  transition: all 0.2s ease;
+}
+
+.slot:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
 }
 
 .slot.open {
@@ -507,7 +521,8 @@
   border-color: var(--primary);
   color: white;
   font-weight: 700;
-}.submitted-participants {
+}
+.submitted-participants {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -633,53 +648,52 @@
     grid-template-columns: 1fr;
   }
 
- .availability-calendar,
-.hint-calendar,
-.submitted-calendar {
-  display: grid;
-  gap: 10px;
-  margin-top: 20px;
-  align-items: center;
-}
+  .availability-calendar,
+  .hint-calendar,
+  .submitted-calendar {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+  }
 
-.calendar-header {
-  text-align: center;
-  font-weight: 700;
-  color: white;
-  padding: 10px 6px;
-  line-height: 1.25;
-}
+  .calendar-header {
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    padding: 10px 6px;
+    line-height: 1.25;
+  }
 
-.calendar-row {
-  display: grid;
-  grid-template-columns: inherit;
-}
+  .calendar-row {
+    display: grid;
+    grid-template-columns: inherit;
+  }
 
-.calendar-time-label {
-  color: var(--muted);
-  font-weight: 600;
-  padding: 12px 10px;
-  white-space: nowrap;
-}
+  .calendar-time-label {
+    color: var(--muted);
+    font-weight: 600;
+    padding: 12px 10px;
+    white-space: nowrap;
+  }
 
-.calendar-cell,
-.hint-cell,
-.submitted-calendar-cell {
-  min-height: 56px;
-  border-radius: 14px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-}
-.calendar-time-label {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  text-align: center;
-  white-space: nowrap;
-  font-size: 12px;
-  padding: 0;
-}
-  
+  .calendar-cell,
+  .hint-cell,
+  .submitted-calendar-cell {
+    min-height: 56px;
+    border-radius: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  .calendar-time-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 0;
+  }
 }

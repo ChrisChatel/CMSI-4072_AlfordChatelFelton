@@ -1,8 +1,28 @@
+import { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+
+  const [previewSlots, setPreviewSlots] = useState([
+    "open",
+    "open",
+    "busy",
+    "open",
+    "open",
+    "busy",
+    "open",
+    "open",
+  ]);
+
+  const togglePreviewSlot = (index) => {
+    setPreviewSlots((slots) =>
+      slots.map((slot, i) =>
+        i === index ? (slot === "open" ? "busy" : "open") : slot
+      )
+    );
+  };
 
   return (
     <main className="app">
@@ -58,21 +78,27 @@ function Home() {
           </div>
 
           <div className="schedule-grid">
-            <div className="time">9 AM</div>
-            <div className="slot open">Open</div>
-            <div className="slot open">Open</div>
+            {["9 AM", "11 AM", "1 PM", "3 PM"].map((time, rowIndex) => (
+              <div className="schedule-row" key={time}>
+                <div className="time">{time}</div>
 
-            <div className="time">11 AM</div>
-            <div className="slot busy">Busy</div>
-            <div className="slot open">Open</div>
+                {[0, 1].map((colIndex) => {
+                  const slotIndex = rowIndex * 2 + colIndex;
+                  const status = previewSlots[slotIndex];
 
-            <div className="time">1 PM</div>
-            <div className="slot open">Open</div>
-            <div className="slot busy">Busy</div>
-
-            <div className="time">3 PM</div>
-            <div className="slot open">Open</div>
-            <div className="slot open">Open</div>
+                  return (
+                    <button
+                      key={`${time}-${colIndex}`}
+                      type="button"
+                      className={`slot ${status}`}
+                      onClick={() => togglePreviewSlot(slotIndex)}
+                    >
+                      {status === "open" ? "Open" : "Busy"}
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
